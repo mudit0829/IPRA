@@ -1,0 +1,79 @@
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: 'Inter', sans-serif;
+  background:#F5F7FA;
+  color:#0B1C2D;
+  line-height:1.6;
+}
+
+header{
+  background:#0B1C2D;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header img{
+  height:52px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:28px;
+  font-weight:500;
+}
+
+section{
+  padding:90px 10%;
+}
+
+h1,h2{
+  font-family:'Montserrat', sans-serif;
+}
+
+.btn{
+  background:#C9A14A;
+  color:white;
+  padding:12px 25px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* ===== CARDS ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.07);
+}
+
+/* ===== FORMS ===== */
+input, textarea{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+
+footer{
+  background:#0B1C2D;
+  color:white;
+  text-align:center;
+  padding:25px;
+}
