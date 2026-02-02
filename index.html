@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPRA | Indian Political Reform Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#F5F7FA;
+      color:#0B1C2D;
+      line-height:1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header{
+      background:#0B1C2D;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    header img{
+      height:52px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:30px;
+      font-weight:500;
+      font-size:15px;
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      background:#0B1C2D;
+      color:white;
+      padding:150px 10%;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:60px;
+      font-family:Montserrat;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      max-width:800px;
+      margin:auto;
+      opacity:.9;
+      font-size:18px;
+    }
+
+    .btn{
+      margin-top:35px;
+      background:#C9A14A;
+      padding:14px 30px;
+      border:none;
+      border-radius:6px;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    /* ===== SECTIONS ===== */
+    section{
+      padding:100px 10%;
+    }
+
+    h2{
+      font-family:Montserrat;
+      font-size:40px;
+      margin-bottom:50px;
+      text-align:center;
+    }
+
+    /* ===== CARDS ===== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:white;
+      padding:35px;
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.07);
+      transition:.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    /* ===== STATS ===== */
+    .stats{
+      background:#0B1C2D;
+      color:white;
+      text-align:center;
+    }
+
+    .stats h3{
+      color:#C9A14A;
+      font-size:44px;
+      margin-bottom:5px;
+    }
+
+    /* ===== CONTACT ===== */
+    input, textarea{
+      width:100%;
+      padding:14px;
+      margin-top:12px;
+      border-radius:6px;
+      border:1px solid #ddd;
+    }
+
+    footer{
+      background:#0B1C2D;
+      color:white;
+      text-align:center;
+      padding:25px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <img src="logo.png" alt="IPRA Logo">
+
+  <nav>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Technology</a>
+    <a href="#">Impact</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>Design. Strategize. Win.</h1>
+  <p>
+    Indian Political Reform Agency (IPRA) provides complete political campaign strategy,
+    booth-level execution, voter analytics, digital outreach and ground operations
+    to help candidates and parties win elections with precision.
+  </p>
+  <button class="btn">Schedule Consultation</button>
+</div>
+
+
+<!-- ===== SERVICES ===== -->
+<section>
+  <h2>Our Campaign Services</h2>
+
+  <div class="grid">
+    <div class="card">Election Strategy & War Rooms</div>
+    <div class="card">Booth-Level Campaign Management</div>
+    <div class="card">Voter Data & Analytics</div>
+    <div class="card">Digital & Social Media Campaigns</div>
+    <div class="card">Survey & Opinion Polling</div>
+    <div class="card">Volunteer & Ground Teams</div>
+  </div>
+</section>
+
+
+<!-- ===== TECHNOLOGY ===== -->
+<section style="background:#eef2f7">
+  <h2>Technology & Intelligence</h2>
+  <p style="text-align:center;max-width:850px;margin:auto">
+    Our proprietary data systems enable real-time voter tracking, booth performance
+    dashboards, WhatsApp automation, sentiment analysis and digital outreach tools
+    to maximize campaign efficiency.
+  </p>
+</section>
+
+
+<!-- ===== IMPACT STATS ===== -->
+<section class="stats">
+  <h2>Our Impact</h2>
+
+  <div class="grid">
+    <div><h3>50+</h3><p>Campaigns Managed</p></div>
+    <div><h3>12</h3><p>States Covered</p></div>
+    <div><h3>10M+</h3><p>Voters Reached</p></div>
+    <div><h3>95%</h3><p>Success Rate</p></div>
+  </div>
+</section>
+
+
+<!-- ===== CONTACT ===== -->
+<section>
+  <h2>Contact IPRA</h2>
+
+  <div style="max-width:600px;margin:auto">
+    <input placeholder="Full Name">
+    <input placeholder="Organization / Party">
+    <input placeholder="Phone Number">
+    <textarea rows="4" placeholder="How can we help you?"></textarea>
+    <button class="btn">Submit Inquiry</button>
+  </div>
+</section>
+
+
+<footer>
+  © 2026 Indian Political Reform Agency (IPRA). All Rights Reserved.
+</footer>
+
+</body>
+</html>
