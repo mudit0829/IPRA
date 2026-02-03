@@ -1,271 +1,2000 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VictorySphere - Political Campaign Management</title>
 
-<title>IPRA | Indian Political Reform Agency</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --bg-section: #070b1f;
+      --bg-card: #0e1229;
+      --accent: #f97316; /* saffron */
+      --accent-soft: rgba(249, 115, 22, 0.15);
+      --accent-secondary: #22c55e;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.85);
+      --nav-height: 72px;
+      --transition-fast: 220ms ease;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body{
-  font-family:'Inter',sans-serif;
-  color:#0B1C2D;
-  background:white;
-  scroll-behavior:smooth;
-}
+    html, body {
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 45%, #000 90%);
+      color: var(--text-main);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  width:100%;
-  background:#0B1C2D;
-  padding:18px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:1000;
-}
+    body {
+      line-height: 1.6;
+    }
 
-header img{height:48px}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav a{
-  color:white;
-  margin-left:28px;
-  text-decoration:none;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-/* ===== HERO ===== */
-.hero{
-  height:100vh;
-  background:
-  linear-gradient(rgba(11,28,45,.85),rgba(11,28,45,.85)),
-  url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000");
-  background-size:cover;
-  background-position:center;
+    /* Utilities */
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
 
-.hero h1{
-  font-size:70px;
-  font-family:Montserrat;
-}
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: #0b1120;
+      box-shadow: 0 18px 45px rgba(249, 115, 22, 0.55);
+    }
 
-.hero p{
-  margin:25px auto;
-  max-width:750px;
-}
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(249, 115, 22, 0.75);
+    }
 
-.btn{
-  background:#C9A14A;
-  padding:14px 28px;
-  border:none;
-  border-radius:6px;
-  color:white;
-}
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(148, 163, 184, 0.5);
+      color: var(--text-main);
+    }
 
-/* ===== SECTIONS ===== */
-section{
-  padding:120px 10%;
-}
+    .btn-outline:hover {
+      background: rgba(148, 163, 184, 0.07);
+      border-color: rgba(148, 163, 184, 0.9);
+      transform: translateY(-2px);
+    }
 
-h2{
-  font-family:Montserrat;
-  font-size:42px;
-  margin-bottom:35px;
-}
+    .section {
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* ===== GRID ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
+    .section:nth-of-type(odd) {
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.16) 0, rgba(15, 23, 42, 0.6) 38%, rgba(2, 6, 23, 0.9) 80%);
+    }
 
-/* ===== CARDS ===== */
-.card{
-  background:#f6f8fb;
-  padding:35px;
-  border-radius:12px;
-  text-align:center;
-  transition:.3s;
-}
+    .section:nth-of-type(even) {
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.05) 0, rgba(15, 23, 42, 0.95) 40%, rgba(15, 23, 42, 1) 100%);
+    }
 
-.card:hover{
-  transform:translateY(-6px);
-}
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
 
-/* ===== SPLIT ===== */
-.split{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:center;
-}
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
 
-.split img{
-  width:100%;
-  border-radius:12px;
-}
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
 
-/* ===== DARK ===== */
-.dark{
-  background:#0B1C2D;
-  color:white;
-  text-align:center;
-}
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
 
-/* ===== STATS ===== */
-.stats{
-  display:flex;
-  justify-content:space-around;
-  flex-wrap:wrap;
-}
+    /* Top strip */
+    .top-strip {
+      width: 100%;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.7));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
 
-.stats h3{
-  font-size:46px;
-  color:#C9A14A;
-}
+    .top-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 1.5rem;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
 
-/* ===== ANIMATION ===== */
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
+    .top-strip-highlight {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
 
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
+    .top-strip-pill {
+      padding: 0.1rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      font-size: 0.75rem;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
 
-footer{
-  background:#0B1C2D;
-  color:white;
-  text-align:center;
-  padding:25px;
-}
+    .top-strip-contact {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
 
-@media(max-width:900px){
-  .split{grid-template-columns:1fr}
-  .hero h1{font-size:42px}
-}
-</style>
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.88));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #f97316, #ea580c 45%, #0b1120 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1120;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.9);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      font-size: 1.2rem;
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      position: relative;
+      padding-block: 0.25rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.25rem;
+      height: 2px;
+      background: linear-gradient(90deg, #f97316, #22c55e);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 200ms ease-out;
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: calc(100vh - var(--nav-height) - 40px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 4rem 0 5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 8% 0, rgba(56, 189, 248, 0.12) 0, transparent 50%),
+        radial-gradient(circle at 90% 0, rgba(248, 250, 252, 0.08) 0, transparent 55%),
+        radial-gradient(circle at 50% 110%, rgba(249, 115, 22, 0.16) 0, transparent 65%);
+      z-index: -1;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.55rem 0.25rem 0.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.85);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.75);
+    }
+
+    .hero-pill-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: conic-gradient(from 140deg, #f97316, #fb923c, #22c55e, #38bdf8, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #020617;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .hero-pill-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1rem, 3.15rem);
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #f97316, #fb923c, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-meta-figure {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-panel {
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.12), rgba(15, 23, 42, 1));
+      border-radius: var(--radius-xl);
+      padding: 1.25rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-panel-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+
+    .hero-panel-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-stat-card {
+      border-radius: 16px;
+      padding: 0.7rem 0.75rem;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stat-label {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-stat-value {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .hero-chart {
+      height: 115px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 0.8rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .hero-chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.45rem;
+      height: 70px;
+    }
+
+    .hero-bar {
+      flex: 1;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.9));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bar-fill {
+      position: absolute;
+      inset-inline: 0.15rem;
+      bottom: 0.15rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #22c55e, #15803d);
+      transform: translateY(100%);
+      transform-origin: bottom;
+    }
+
+    .hero-chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-floating {
+      position: absolute;
+      right: -6px;
+      bottom: -20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+
+    .hero-floating-pill {
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 99px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .service-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.1rem;
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.06), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      cursor: default;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background: radial-gradient(circle at top, rgba(249, 115, 22, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 260ms ease-out;
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(249, 115, 22, 0.9), rgba(248, 250, 252, 0.9));
+      color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 14px 36px rgba(249, 115, 22, 0.7);
+    }
+
+    .service-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .service-tag {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.7rem;
+    }
+
+    .service-arrow {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px) translateZ(0);
+      box-shadow: 0 30px 70px rgba(15, 23, 42, 1);
+      border-color: rgba(249, 115, 22, 0.6);
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.2), rgba(15, 23, 42, 1));
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover .service-arrow {
+      transform: translateX(4px);
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    /* About & credibility band */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1.1fr;
+      gap: 2.7rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .about-stat {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.9rem;
+      text-align: center;
+    }
+
+    .about-stat-number {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .about-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .about-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.12), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .about-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .about-logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .pill-logo {
+      padding: 0.22rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.55);
+    }
+
+    /* Why us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .why-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.1rem 1.1rem 1.05rem;
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.9);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: #e5e7eb;
+    }
+
+    .why-dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      top: 14px;
+      right: 14px;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+    }
+
+    /* Process timeline */
+    .process-strip {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.96);
+      box-shadow: var(--shadow-soft);
+      padding: 1.4rem;
+      overflow-x: auto;
+    }
+
+    .process-steps {
+      display: flex;
+      gap: 1.2rem;
+      min-width: max-content;
+    }
+
+    .process-step {
+      min-width: 190px;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.08), rgba(15, 23, 42, 1));
+      padding: 0.85rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .process-step-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
+      color: #e5e7eb;
+    }
+
+    .process-step-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Case studies */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .case-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 1rem 1rem 0.95rem;
+      box-shadow: 0 20px 52px rgba(15, 23, 42, 0.95);
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .case-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .case-chip {
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.72rem;
+    }
+
+    .case-chart {
+      margin: 0.5rem 0 0.4rem;
+      height: 60px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.05), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.4rem 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .case-bar {
+      flex: 1;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .case-bar-inner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f97316, #ea580c);
+      transform: translateY(100%);
+      transform-origin: bottom;
+    }
+
+    .case-bar-inner.gain {
+      background: linear-gradient(180deg, #22c55e, #15803d);
+    }
+
+    /* Testimonials */
+    .testimonials-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 1.1fr;
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .testimonial-main {
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.97);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: var(--shadow-soft);
+      padding: 1.3rem 1.35rem;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-quote {
+      color: #e5e7eb;
+      margin-bottom: 0.9rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .testimonial-badge {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 115, 22, 0.6);
+      font-size: 0.7rem;
+      color: #fed7aa;
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .testimonial-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-logo-pill {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.65);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Insights */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .insight-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 0.95rem 0.95rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .insight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 1);
+      border-color: rgba(249, 115, 22, 0.7);
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.15), rgba(15, 23, 42, 1));
+    }
+
+    .insight-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #94a3b8;
+    }
+
+    .insight-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .insight-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA section */
+    .cta-inner {
+      border-radius: var(--radius-xl);
+      padding: 1.9rem 1.85rem;
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.23), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(249, 250, 251, 0.08);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 1);
+      display: grid;
+      grid-template-columns: 1.5fr 1.2fr;
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-text {
+      font-size: 0.95rem;
+      color: #f9fafb;
+      opacity: 0.88;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-contact-card {
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .cta-contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cta-label {
+      font-size: 0.77rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #94a3b8;
+    }
+
+    .cta-value {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: #020617;
+      border-top: 1px solid rgba(15, 23, 42, 1);
+      padding: 2.2rem 0 1.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+      gap: 2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .footer-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-pill {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 550ms ease-out,
+        transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 80ms;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 160ms;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 240ms;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 320ms;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1.3fr 1.1fr;
+        gap: 2.4rem;
+      }
+
+      .services-grid,
+      .cases-grid,
+      .why-grid,
+      .insights-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout,
+      .testimonials-layout,
+      .cta-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-strip-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+
+      .nav {
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        padding: 0.85rem 1.5rem 1rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+        background: rgba(15, 23, 42, 0.98);
+        z-index: 30;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .services-grid,
+      .cases-grid,
+      .why-grid,
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-layout {
+        gap: 1.8rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
 
-<header>
-  <img src="logo.png">
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#team">Team</a>
-    <a href="volunteer.html">Volunteer</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Winning Elections with Intelligence</h1>
-    <p>End-to-end political campaign strategy, analytics, booth execution and digital outreach across India.</p>
-    <button class="btn">Schedule Consultation</button>
+  <!-- Top strip -->
+  <div class="top-strip">
+    <div class="top-strip-inner">
+      <div class="top-strip-highlight">
+        <span class="top-strip-pill">2026 Elections</span>
+        <span>Next cycle: <strong>134 days</strong> to go – lock in your campaign war‑room.</span>
+      </div>
+      <div class="top-strip-contact">
+        <span>Call: +91‑98XX‑XXX‑XXX</span>
+        <span>WhatsApp: +91‑98XX‑XXX‑XXX</span>
+      </div>
+    </div>
   </div>
-</div>
 
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-mark">V</div>
+          <div class="logo-text">
+            <div class="logo-title">VictorySphere</div>
+            <div class="logo-sub">Political Campaign Architects</div>
+          </div>
+        </div>
 
-<!-- IMPORTANCE -->
-<section class="split fade">
-  <div>
-    <h2>Importance of Political Consulting</h2>
-    <p>
-      Modern elections are driven by data, strategy and execution. From booth mapping to digital engagement,
-      campaigns today require scientific planning and professional management.
-    </p>
-  </div>
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200">
-</section>
+        <div class="nav-links" id="navLinks">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#why" class="nav-link">Why Us</a>
+          <a href="#process" class="nav-link">Process</a>
+          <a href="#cases" class="nav-link">Case Studies</a>
+          <a href="#insights" class="nav-link">Insights</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
 
+        <div class="nav-actions">
+          <button class="btn btn-outline" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+            Download Deck
+          </button>
+          <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+            Work With Us →
+          </button>
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            ☰
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-<!-- SERVICES -->
-<section id="services" class="fade">
-  <h2 style="text-align:center">Our Core Services</h2>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-orbit"></div>
+    <div class="container hero-inner">
+      <div class="hero-left reveal">
+        <div class="hero-pill">
+          <div class="hero-pill-badge">VS</div>
+          <div class="hero-pill-text">Election campaigns, redesigned for the data‑driven era.</div>
+        </div>
+        <h1 class="hero-title">
+          Winning campaigns for <span>leaders</span> who cannot afford to guess.
+        </h1>
+        <p class="hero-subtitle">
+          We are a full‑stack political campaign company that blends strategy, technology and on‑ground machinery to build
+          narratives, move voters and secure lasting victories across India’s most competitive constituencies.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+            Book confidential strategy call
+          </button>
+          <button class="btn btn-outline" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">
+            Explore services
+          </button>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-figure">200+ campaigns</div>
+            <div>Parliament, Assembly & local body elections.</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-figure">90% booth coverage</div>
+            <div>Average across managed constituencies.</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-figure">Pan‑India footprint</div>
+            <div>Teams on ground across 14+ states.</div>
+          </div>
+        </div>
+      </div>
 
-  <div class="grid">
-    <div class="card">📊 Research</div>
-    <div class="card">📋 Surveys</div>
-    <div class="card">⚙ Strategies</div>
-    <div class="card">🚀 Execution</div>
-    <div class="card">🏆 Win</div>
-  </div>
-</section>
+      <div class="hero-right reveal reveal-delay-2">
+        <div class="hero-panel">
+          <div class="hero-panel-header">
+            <div class="hero-panel-title">Live election command dashboard</div>
+            <div class="hero-panel-badge">Realtime signal feed</div>
+          </div>
+          <div class="hero-stats-grid">
+            <div class="hero-stat-card">
+              <div class="hero-stat-label">Booths synced</div>
+              <div class="hero-stat-value">1,276 / 1,320</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-label">Volunteer turnout</div>
+              <div class="hero-stat-value">93.4%</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-label">Swing segments</div>
+              <div class="hero-stat-value">+7.3%</div>
+            </div>
+          </div>
+          <div class="hero-chart">
+            <div class="hero-chart-bars">
+              <div class="hero-bar">
+                <div class="hero-bar-fill" style="height:40%;"></div>
+              </div>
+              <div class="hero-bar">
+                <div class="hero-bar-fill" style="height:60%;"></div>
+              </div>
+              <div class="hero-bar">
+                <div class="hero-bar-fill" style="height:80%;"></div>
+              </div>
+              <div class="hero-bar">
+                <div class="hero-bar-fill" style="height:52%;"></div>
+              </div>
+              <div class="hero-bar">
+                <div class="hero-bar-fill" style="height:90%;"></div>
+              </div>
+            </div>
+            <div class="hero-chart-footer">
+              <span>Vote share projection (rolling average)</span>
+              <span>Updated 12 sec ago</span>
+            </div>
+          </div>
 
+          <div class="hero-floating">
+            <div class="hero-floating-pill">
+              <span class="hero-indicator"></span>
+              <span>Booth 87: turnout 76% vs 62% last cycle.</span>
+            </div>
+            <div class="hero-floating-pill">
+              <span class="hero-indicator"></span>
+              <span>Digital: 4.3M impressions today — narrative on track.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- VISION MISSION -->
-<section class="split fade">
-  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200">
-  <div>
-    <h2>Vision & Mission</h2>
-    <p>
-      To build a stronger democracy through data-driven political systems and people-centric campaigns that deliver measurable outcomes.
-    </p>
-  </div>
-</section>
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Services</div>
+        <h2 class="section-title">A 360° campaign company under one roof.</h2>
+        <p class="section-subtitle">
+          From image building to booth‑level operations, our teams design, manage and measure every layer of your political campaign with precision.
+        </p>
+      </div>
 
+      <div class="services-grid">
+        <!-- 1 -->
+        <article class="service-card reveal">
+          <div>
+            <div class="service-icon">★</div>
+            <h3 class="service-title">Image building of party &amp; leader</h3>
+            <p class="service-desc">
+              Narrative architectures, leader positioning, and reputation programmes that build trust and relatability across diverse voter segments.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Brand architecture</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-<!-- TEAM -->
-<section id="team" class="fade">
-  <h2 style="text-align:center">Our Team</h2>
+        <!-- 2 -->
+        <article class="service-card reveal reveal-delay-1">
+          <div>
+            <div class="service-icon">Ⓟ</div>
+            <h3 class="service-title">Constituency‑centric political strategies</h3>
+            <p class="service-desc">
+              Micro‑level constituency mapping, data‑driven segmentation and hyperlocal strategy design tailored to caste, community and issue clusters.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Micro‑planning</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-  <div class="grid">
-    <div class="card">Strategy Experts</div>
-    <div class="card">Data Analysts</div>
-    <div class="card">Field Managers</div>
-    <div class="card">Digital Specialists</div>
-  </div>
-</section>
+        <!-- 3 -->
+        <article class="service-card reveal reveal-delay-2">
+          <div>
+            <div class="service-icon">⚙</div>
+            <h3 class="service-title">Proactive management of constituencies</h3>
+            <p class="service-desc">
+              Always‑on grievance cells, MLA/MP office systems and measurable outreach campaigns that keep your constituency warm between elections.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Constituency ops</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
+        <!-- 4 -->
+        <article class="service-card reveal reveal-delay-3">
+          <div>
+            <div class="service-icon">⚖</div>
+            <h3 class="service-title">Social‑movement building</h3>
+            <p class="service-desc">
+              Issue‑based campaigns, volunteer mobilisation and coalition‑building that converts supporters into a committed movement on the ground.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Grassroots</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-<!-- STATS -->
-<section class="dark fade">
-  <h2>Our Impact</h2>
+        <!-- 5 -->
+        <article class="service-card reveal">
+          <div>
+            <div class="service-icon">✓</div>
+            <h3 class="service-title">Manifesto creation &amp; agenda setting</h3>
+            <p class="service-desc">
+              Research‑backed manifestos, targeted promises and messaging frameworks that speak to real voter aspirations, not generic slogans.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Policy design</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-  <div class="stats">
-    <div><h3>50+</h3><p>Campaigns</p></div>
-    <div><h3>12</h3><p>States</p></div>
-    <div><h3>10M+</h3><p>Voters</p></div>
-    <div><h3>95%</h3><p>Success</p></div>
-  </div>
-</section>
+        <!-- 6 -->
+        <article class="service-card reveal reveal-delay-1">
+          <div>
+            <div class="service-icon">☰</div>
+            <h3 class="service-title">Social media &amp; media management</h3>
+            <p class="service-desc">
+              Integrated digital, print and TV strategies, content calendars and newsroom desks that keep your story ahead of the news cycle.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Digital &amp; PR</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
+        <!-- 7 -->
+        <article class="service-card reveal reveal-delay-2">
+          <div>
+            <div class="service-icon">▣</div>
+            <h3 class="service-title">Field surveys – political &amp; developmental</h3>
+            <p class="service-desc">
+              Scientific sample design, CATI and on‑ground surveys, exit polls and sentiment analytics feeding directly into your strategy room.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Insights</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-<footer>
-© 2026 Indian Political Reform Agency (IPRA)
-</footer>
+        <!-- 8 -->
+        <article class="service-card reveal reveal-delay-3">
+          <div>
+            <div class="service-icon">✪</div>
+            <h3 class="service-title">Booth level management</h3>
+            <p class="service-desc">
+              Booth committees, volunteer training, voter list management and E‑day logistics that ensure every favourable vote is identified and brought out.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Last mile</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
+        <!-- 9 -->
+        <article class="service-card reveal">
+          <div>
+            <div class="service-icon">⟳</div>
+            <h3 class="service-title">Real‑time poll management</h3>
+            <p class="service-desc">
+              Control rooms, turnout dashboards and escalation teams monitoring every phase of voting in real time – from mock poll to last vote.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">War‑room</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
-<script>
-const faders = document.querySelectorAll('.fade');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-});
-faders.forEach(f => observer.observe(f));
-</script>
+        <!-- 10 -->
+        <article class="service-card reveal reveal-delay-1">
+          <div>
+            <div class="service-icon">♜</div>
+            <h3 class="service-title">Leadership development</h3>
+            <p class="service-desc">
+              Candidate grooming, media and debate training, digital persona coaching and stakeholder management programmes for emerging leaders.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Leader labs</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
 
+        <!-- 11 -->
+        <article class="service-card reveal reveal-delay-2">
+          <div>
+            <div class="service-icon">⚡</div>
+            <h3 class="service-title">Reputation &amp; crisis management</h3>
+            <p class="service-desc">
+              24x7 monitoring, rapid response playbooks and fact‑based counter‑narratives that contain crises before they spiral.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Crisis desk</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="service-card reveal reveal-delay-3">
+          <div>
+            <div class="service-icon">✎</div>
+            <h3 class="service-title">Content &amp; communication strategy</h3>
+            <p class="service-desc">
+              Speechwriting, campaign films, jingles, print creatives and digital storytelling that maintain one powerful, consistent voice.
+            </p>
+          </div>
+          <div class="service-meta">
+            <span class="service-tag">Creative studio</span>
+            <div class="service-arrow">↗</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">About us</div>
+        <h2 class="section-title">Campaign specialists built for India’s democracy.</h2>
+        <p class="section-subtitle">
+          We are a multi‑disciplinary team of political strategists, data scientists, journalists and field organisers who solve the real‑world constraints of Indian elections.
+        </p>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-text reveal">
+          <p>
+            VictorySphere was born from one conviction: campaigns should be run on evidence, not instinct. We combine constituency‑level intelligence with creative storytelling and disciplined execution.
+          </p>
+          <p>
+            Our teams have worked across national, regional and independent platforms — always with a non‑partisan, professional approach focused on measurable outcomes, not noise.
+          </p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-number">10+ yrs</div>
+              <div class="about-stat-label">Campaign experience</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-number">14</div>
+              <div class="about-stat-label">States covered</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-number">200+</div>
+              <div class="about-stat-label">Campaigns managed</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="about-card reveal reveal-delay-2">
+          <div class="about-card-header">
+            <div class="about-card-title">Who trusts us</div>
+            <span class="hero-panel-badge">Confidential engagement</span>
+          </div>
+          <p style="font-size:0.86rem;color:var(--text-muted);">
+            Our work spans national parties, regional outfits and independent candidates. Many of our most meaningful assignments remain under strict NDA to protect campaign sensitivities.
+          </p>
+          <div class="about-logo-row">
+            <span class="pill-logo">National parties</span>
+            <span class="pill-logo">Regional parties</span>
+            <span class="pill-logo">First‑time candidates</span>
+            <span class="pill-logo">Chief Minister campaigns</span>
+            <span class="pill-logo">Issue‑driven movements</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section id="why" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Why VictorySphere</div>
+        <h2 class="section-title">Strategy, technology and field – perfectly synced.</h2>
+        <p class="section-subtitle">
+          Most consultancies focus on one piece of the puzzle. We design, execute and measure the full stack so your campaign speaks with one powerful, coherent voice.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why-card reveal">
+          <div class="why-dot"></div>
+          <h4>War‑room integrated campaigns</h4>
+          <p>
+            Strategy, digital, volunteers, booth teams and media desks are run from a single command room with daily dashboards and check‑ins.
+          </p>
+        </article>
+        <article class="why-card reveal reveal-delay-1">
+          <div class="why-dot"></div>
+          <h4>Hard data, not guesswork</h4>
+          <p>
+            Voter files, field surveys, feedback apps and social listening all plug into one intelligence layer – giving you a real‑time pulse of opinion shifts.
+          </p>
+        </article>
+        <article class="why-card reveal reveal-delay-2">
+          <div class="why-dot"></div>
+          <h4>On‑ground machinery that delivers</h4>
+          <p>
+            Booth committees, cadre training, route planning and micro‑events ensure your message is not only seen online but acted upon offline.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Process</div>
+        <h2 class="section-title">How we build a winning campaign.</h2>
+        <p class="section-subtitle">
+          A transparent, step‑by‑step engagement model built to keep you in control while our teams run the machinery.
+        </p>
+      </div>
+
+      <div class="process-strip reveal reveal-delay-1">
+        <div class="process-steps">
+          <article class="process-step">
+            <div class="process-step-index">1</div>
+            <div class="process-step-title">Discovery &amp; audit</div>
+            <p>Constituency audit, leader mapping, previous result analysis and stakeholder interviews.</p>
+          </article>
+          <article class="process-step">
+            <div class="process-step-index">2</div>
+            <div class="process-step-title">Blueprint &amp; segmentation</div>
+            <p>Voter segmentation, issue hierarchy and campaign blueprint with timelines and KPIs.</p>
+          </article>
+          <article class="process-step">
+            <div class="process-step-index">3</div>
+            <div class="process-step-title">Message &amp; manifesto</div>
+            <p>Core narrative, manifesto design, creative directions and tone of voice guidelines.</p>
+          </article>
+          <article class="process-step">
+            <div class="process-step-index">4</div>
+            <div class="process-step-title">War‑room setup</div>
+            <p>Digital desk, media team, volunteer stack and field coordinators deployed.</p>
+          </article>
+          <article class="process-step">
+            <div class="process-step-index">5</div>
+            <div class="process-step-title">Execution &amp; optimisation</div>
+            <p>Daily monitoring, rapid experimentation and mid‑course corrections based on data.</p>
+          </article>
+          <article class="process-step">
+            <div class="process-step-index">6</div>
+            <div class="process-step-title">Election day &amp; beyond</div>
+            <p>E‑day operations, turnout maximisation and post‑election analysis for the next cycle.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case studies -->
+  <section id="cases" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Impact</div>
+        <h2 class="section-title">Case studies from the field.</h2>
+        <p class="section-subtitle">
+          Names and specific details are anonymised, but the impact numbers are very real.
+        </p>
+      </div>
+
+      <div class="cases-grid">
+        <article class="case-card reveal">
+          <div class="case-header">
+            <div class="case-title">Urban constituency – North India</div>
+            <span class="case-chip">Assembly</span>
+          </div>
+          <p>Three‑way contest with fragmented urban vote and strong anti‑incumbency narrative.</p>
+          <div class="case-chart">
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:35%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner gain" style="height:72%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:48%;"></div>
+            </div>
+          </div>
+          <p>Result: leader won with 8.2% vote‑share swing driven by middle‑class and youth segments.</p>
+        </article>
+
+        <article class="case-card reveal reveal-delay-1">
+          <div class="case-header">
+            <div class="case-title">Semi‑rural belt – East India</div>
+            <span class="case-chip">Parliament</span>
+          </div>
+          <p>Low organisational strength, strong caste equations and weak digital presence.</p>
+          <div class="case-chart">
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:30%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner gain" style="height:68%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:45%;"></div>
+            </div>
+          </div>
+          <p>Result: 1.9 lakh vote margin with 92% booth coverage and unprecedented turnout among women voters.</p>
+        </article>
+
+        <article class="case-card reveal reveal-delay-2">
+          <div class="case-header">
+            <div class="case-title">First‑time candidate – Metro city</div>
+            <span class="case-chip">Corporation</span>
+          </div>
+          <p>Unknown face taking on a three‑time incumbent with strong local network.</p>
+          <div class="case-chart">
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:28%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner gain" style="height:76%;"></div>
+            </div>
+            <div class="case-bar">
+              <div class="case-bar-inner" style="height:39%;"></div>
+            </div>
+          </div>
+          <p>Result: historic win with 2.3x increase in volunteer count and highest turnout ward in city.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">What our clients say</div>
+        <h2 class="section-title">Leaders who treat campaigns as investments, not experiments.</h2>
+        <p class="section-subtitle">
+          Our best publicity is the quiet confidence of leaders who know their campaigns are being run like enterprises.
+        </p>
+      </div>
+
+      <div class="testimonials-layout">
+        <article class="testimonial-main reveal">
+          <p class="testimonial-quote">
+            “For the first time, I could see exactly what was happening in every booth – who was responsible, what the numbers looked like and where our narrative needed course‑correction. It felt like running a company, not just a campaign.”
+          </p>
+          <div class="testimonial-author">
+            <span>Senior MLA, North Indian state (name withheld on request)</span>
+            <span class="testimonial-badge">Multi‑cycle engagement</span>
+          </div>
+        </article>
+
+        <aside class="reveal reveal-delay-2">
+          <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.8rem;">
+            Our teams have supported campaigns covered by leading national and regional media outlets.
+          </p>
+          <div class="testimonial-logos">
+            <span class="testimonial-logo-pill">National news channels</span>
+            <span class="testimonial-logo-pill">Regional TV</span>
+            <span class="testimonial-logo-pill">Print dailies</span>
+            <span class="testimonial-logo-pill">Digital platforms</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights -->
+  <section id="insights" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="eyebrow">Insights</div>
+        <h2 class="section-title">Campaign intelligence for serious leaders.</h2>
+        <p class="section-subtitle">
+          Short, sharp explainers you can use immediately with your team.
+        </p>
+      </div>
+
+      <div class="insights-grid">
+        <article class="insight-card reveal">
+          <div class="insight-tag">Strategy</div>
+          <div class="insight-title">How to structure your first war‑room in 30 days.</div>
+          <p>Checklist, roles, dashboards and rhythms to turn a campaign office into an operational nerve centre.</p>
+          <div class="insight-meta">
+            <span>7‑min read</span>
+            <span>Download PDF →</span>
+          </div>
+        </article>
+
+        <article class="insight-card reveal reveal-delay-1">
+          <div class="insight-tag">Digital</div>
+          <div class="insight-title">The 5 content pillars every modern leader needs.</div>
+          <p>From governance storytelling to rapid rebuttals – a simple structure for your digital presence.</p>
+          <div class="insight-meta">
+            <span>5‑min read</span>
+            <span>View playbook →</span>
+          </div>
+        </article>
+
+        <article class="insight-card reveal reveal-delay-2">
+          <div class="insight-tag">Ground</div>
+          <div class="insight-title">Booth‑level systems that survive beyond one election.</div>
+          <p>How to convert E‑day mobilisation into permanent organisation strength on the ground.</p>
+          <div class="insight-meta">
+            <span>6‑min read</span>
+            <span>Read article →</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div>
+          <h2 class="cta-title">Ready to design your next winning campaign?</h2>
+          <p class="cta-text">
+            Share a few details and our senior strategy team will get back within 24 hours for a completely confidential discussion.
+          </p>
+          <div class="cta-actions">
+            <button class="btn btn-primary">
+              Schedule strategy call →
+            </button>
+            <button class="btn btn-outline">
+              Download capabilities deck
+            </button>
+          </div>
+        </div>
+        <div class="cta-contact-card">
+          <div class="cta-contact-row">
+            <span class="cta-label">Call</span>
+            <span class="cta-value">+91‑98XX‑XXX‑XXX</span>
+          </div>
+          <div class="cta-contact-row">
+            <span class="cta-label">Email</span>
+            <span class="cta-value">strategy@victorysphere.in</span>
+          </div>
+          <div class="cta-contact-row">
+            <span class="cta-label">Offices</span>
+            <span class="cta-value">New Delhi • Lucknow • Patna</span>
+          </div>
+          <p style="margin-top:0.5rem;font-size:0.76rem;color:var(--text-muted);">
+            We maintain strict confidentiality and do not publicly disclose client names without explicit consent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">VictorySphere</div>
+          <p>
+            A political campaign consulting company providing strategy, communication and on‑ground execution services to leaders and parties across India.
+          </p>
+        </div>
+        <div>
+          <div class="footer-title">Services</div>
+          <div class="footer-links">
+            <a href="#services">Image building</a>
+            <a href="#services">Constituency strategy</a>
+            <a href="#services">Booth management</a>
+            <a href="#services">Crisis communication</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Resources</div>
+          <div class="footer-links">
+            <a href="#insights">Insights</a>
+            <a href="#insights">Playbooks</a>
+            <a href="#insights">Case studies</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Compliance</div>
+          <p>
+            We operate within the legal and ethical framework of the Election Commission of India and applicable national and state laws.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 VictorySphere Campaign Consulting Pvt. Ltd. All rights reserved.</span>
+        <div class="footer-socials">
+          <div class="social-pill">in</div>
+          <div class="social-pill">X</div>
+          <div class="social-pill">▶</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-open");
+    });
+
+    // Scroll reveal using IntersectionObserver (simple + performant) [web:31][web:40]
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const ioOptions = {
+      threshold: 0.18
+    };
+
+    const revealOnScroll = (entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    };
+
+    const observer = new IntersectionObserver(revealOnScroll, ioOptions);
+    revealElements.forEach(el => observer.observe(el));
+
+    // Animate hero chart and case bars on load
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".hero-bar-fill").forEach(bar => {
+        const h = bar.style.height || "70%";
+        bar.style.transform = "translateY(100%)";
+        setTimeout(() => {
+          bar.style.transition = "transform 800ms cubic-bezier(0.16, 1, 0.3, 1)";
+          bar.style.transform = "translateY(" + (100 - parseInt(h, 10)) + "%)";
+        }, 250);
+      });
+
+      document.querySelectorAll(".case-bar-inner").forEach((bar, index) => {
+        const h = bar.style.height || "60%";
+        bar.style.transform = "translateY(100%)";
+        setTimeout(() => {
+          bar.style.transition = "transform 750ms cubic-bezier(0.2, 0.9, 0.3, 1)";
+          bar.style.transform = "translateY(" + (100 - parseInt(h, 10)) + "%)";
+        }, 300 + index * 90);
+      });
+    });
+  </script>
 </body>
 </html>
