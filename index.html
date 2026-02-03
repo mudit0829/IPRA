@@ -407,31 +407,57 @@
       position: relative;
     }
 
-    .hero-panel {
-      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.12), rgba(15, 23, 42, 1));
-      border-radius: var(--radius-xl);
-      padding: 1.25rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft);
+    .hero-image-wrapper {
       position: relative;
+      border-radius: var(--radius-xl);
       overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.92;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(249, 115, 22, 0.3) 100%);
+      pointer-events: none;
+    }
+
+    .hero-panel {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
     }
 
     .hero-panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .hero-panel-title {
-      font-size: 0.96rem;
+      font-size: 0.9rem;
       font-weight: 600;
+      color: #e5e7eb;
     }
 
     .hero-panel-badge {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.6rem;
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
       border-radius: 999px;
       background: rgba(34, 197, 94, 0.12);
       color: #bbf7d0;
@@ -441,106 +467,27 @@
     .hero-stats-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-bottom: 1.1rem;
-      font-size: 0.8rem;
+      gap: 0.7rem;
+      font-size: 0.78rem;
     }
 
     .hero-stat-card {
-      border-radius: 16px;
-      padding: 0.7rem 0.75rem;
+      border-radius: 14px;
+      padding: 0.6rem 0.65rem;
       background: rgba(15, 23, 42, 0.92);
       border: 1px solid rgba(148, 163, 184, 0.4);
-      position: relative;
-      overflow: hidden;
     }
 
     .hero-stat-label {
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       margin-bottom: 0.15rem;
     }
 
     .hero-stat-value {
       font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .hero-chart {
-      height: 115px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 0.8rem 0.9rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-
-    .hero-chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.45rem;
-      height: 70px;
-    }
-
-    .hero-bar {
-      flex: 1;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.9));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bar-fill {
-      position: absolute;
-      inset-inline: 0.15rem;
-      bottom: 0.15rem;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #22c55e, #15803d);
-      transform: translateY(100%);
-      transform-origin: bottom;
-    }
-
-    .hero-chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .hero-floating {
-      position: absolute;
-      right: -6px;
-      bottom: -20px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      align-items: flex-end;
-      pointer-events: none;
-    }
-
-    .hero-floating-pill {
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      display: flex;
-      gap: 0.35rem;
-      align-items: center;
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.95);
-    }
-
-    .hero-indicator {
-      width: 7px;
-      height: 7px;
-      border-radius: 99px;
-      background: #22c55e;
-      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
+      font-size: 0.85rem;
+      color: #e5e7eb;
     }
 
     /* Services grid */
@@ -575,18 +522,25 @@
       pointer-events: none;
     }
 
-    .service-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 14px;
-      background: linear-gradient(145deg, rgba(249, 115, 22, 0.9), rgba(248, 250, 252, 0.9));
-      color: #020617;
+    .service-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(249, 115, 22, 0.15), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(249, 115, 22, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
       margin-bottom: 0.9rem;
-      box-shadow: 0 14px 36px rgba(249, 115, 22, 0.7);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-icon-wrapper img {
+      width: 75%;
+      height: 75%;
+      object-fit: contain;
+      filter: brightness(1.1) saturate(1.2);
     }
 
     .service-title {
@@ -689,6 +643,24 @@
       border: 1px solid rgba(148, 163, 184, 0.35);
       padding: 1.4rem 1.5rem;
       box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .about-image-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .about-card-header {
@@ -696,6 +668,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 1;
     }
 
     .about-card-title {
@@ -710,6 +684,8 @@
       margin-top: 0.6rem;
       font-size: 0.75rem;
       color: var(--text-muted);
+      position: relative;
+      z-index: 1;
     }
 
     .pill-logo {
@@ -744,15 +720,17 @@
       color: #e5e7eb;
     }
 
-    .why-dot {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      top: 14px;
-      right: 14px;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+    .why-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(34, 197, 94, 0.2));
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
     }
 
     /* Process timeline */
@@ -783,16 +761,18 @@
     }
 
     .process-step-index {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(34, 197, 94, 0.2));
       border: 1px solid rgba(148, 163, 184, 0.6);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.78rem;
+      margin-bottom: 0.5rem;
       color: #e5e7eb;
+      font-weight: 600;
     }
 
     .process-step-title {
@@ -813,10 +793,40 @@
       border-radius: var(--radius-lg);
       background: rgba(15, 23, 42, 0.96);
       border: 1px solid rgba(148, 163, 184, 0.45);
-      padding: 1rem 1rem 0.95rem;
+      overflow: hidden;
       box-shadow: 0 20px 52px rgba(15, 23, 42, 0.95);
       font-size: 0.83rem;
       color: var(--text-muted);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 1);
+    }
+
+    .case-image {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .case-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .case-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+    }
+
+    .case-content {
+      padding: 1rem 1rem 0.95rem;
     }
 
     .case-header {
@@ -913,19 +923,26 @@
       background: rgba(249, 115, 22, 0.08);
     }
 
-    .testimonial-logos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .testimonial-image-side {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      height: 280px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
-    .testimonial-logo-pill {
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.65);
-      background: rgba(15, 23, 42, 0.9);
+    .testimonial-image-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .testimonial-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(249, 115, 22, 0.3) 100%);
     }
 
     /* Insights */
@@ -947,6 +964,18 @@
       gap: 0.4rem;
       cursor: pointer;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .insight-icon-bg {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      opacity: 0.04;
+      pointer-events: none;
     }
 
     .insight-card:hover {
@@ -961,12 +990,16 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: #94a3b8;
+      position: relative;
+      z-index: 1;
     }
 
     .insight-title {
       font-size: 0.9rem;
       font-weight: 600;
       color: #e5e7eb;
+      position: relative;
+      z-index: 1;
     }
 
     .insight-meta {
@@ -975,6 +1008,8 @@
       align-items: center;
       font-size: 0.75rem;
       color: var(--text-muted);
+      position: relative;
+      z-index: 1;
     }
 
     /* CTA section */
@@ -988,6 +1023,18 @@
       grid-template-columns: 1.5fr 1.2fr;
       gap: 2.4rem;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg-vector {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      opacity: 0.05;
+      pointer-events: none;
     }
 
     .cta-title {
@@ -995,12 +1042,16 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 0.6rem;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-text {
       font-size: 0.95rem;
       color: #f9fafb;
       opacity: 0.88;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-actions {
@@ -1008,6 +1059,8 @@
       gap: 0.75rem;
       margin-top: 1.1rem;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-contact-card {
@@ -1020,6 +1073,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-contact-row {
@@ -1098,6 +1153,12 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .social-pill:hover {
+      background: rgba(148, 163, 184, 0.1);
+      border-color: rgba(148, 163, 184, 0.9);
     }
 
     /* Scroll reveal */
@@ -1286,7 +1347,7 @@
         </h1>
         <p class="hero-subtitle">
           We are a full‑stack political campaign company that blends strategy, technology and on‑ground machinery to build
-          narratives, move voters and secure lasting victories across India’s most competitive constituencies.
+          narratives, move voters and secure lasting victories across India's most competitive constituencies.
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
@@ -1299,7 +1360,7 @@
         <div class="hero-meta">
           <div class="hero-meta-item">
             <div class="hero-meta-figure">200+ campaigns</div>
-            <div>Parliament, Assembly & local body elections.</div>
+            <div>Parliament, Assembly &amp; local body elections.</div>
           </div>
           <div class="hero-meta-item">
             <div class="hero-meta-figure">90% booth coverage</div>
@@ -1313,57 +1374,28 @@
       </div>
 
       <div class="hero-right reveal reveal-delay-2">
-        <div class="hero-panel">
-          <div class="hero-panel-header">
-            <div class="hero-panel-title">Live election command dashboard</div>
-            <div class="hero-panel-badge">Realtime signal feed</div>
-          </div>
-          <div class="hero-stats-grid">
-            <div class="hero-stat-card">
-              <div class="hero-stat-label">Booths synced</div>
-              <div class="hero-stat-value">1,276 / 1,320</div>
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=800&h=900&fit=crop&q=90" alt="Campaign Strategy Dashboard" />
+          <div class="hero-image-overlay"></div>
+          
+          <div class="hero-panel">
+            <div class="hero-panel-header">
+              <div class="hero-panel-title">Live election command dashboard</div>
+              <div class="hero-panel-badge">Realtime signal feed</div>
             </div>
-            <div class="hero-stat-card">
-              <div class="hero-stat-label">Volunteer turnout</div>
-              <div class="hero-stat-value">93.4%</div>
-            </div>
-            <div class="hero-stat-card">
-              <div class="hero-stat-label">Swing segments</div>
-              <div class="hero-stat-value">+7.3%</div>
-            </div>
-          </div>
-          <div class="hero-chart">
-            <div class="hero-chart-bars">
-              <div class="hero-bar">
-                <div class="hero-bar-fill" style="height:40%;"></div>
+            <div class="hero-stats-grid">
+              <div class="hero-stat-card">
+                <div class="hero-stat-label">Booths synced</div>
+                <div class="hero-stat-value">1,276 / 1,320</div>
               </div>
-              <div class="hero-bar">
-                <div class="hero-bar-fill" style="height:60%;"></div>
+              <div class="hero-stat-card">
+                <div class="hero-stat-label">Volunteer turnout</div>
+                <div class="hero-stat-value">93.4%</div>
               </div>
-              <div class="hero-bar">
-                <div class="hero-bar-fill" style="height:80%;"></div>
+              <div class="hero-stat-card">
+                <div class="hero-stat-label">Swing segments</div>
+                <div class="hero-stat-value">+7.3%</div>
               </div>
-              <div class="hero-bar">
-                <div class="hero-bar-fill" style="height:52%;"></div>
-              </div>
-              <div class="hero-bar">
-                <div class="hero-bar-fill" style="height:90%;"></div>
-              </div>
-            </div>
-            <div class="hero-chart-footer">
-              <span>Vote share projection (rolling average)</span>
-              <span>Updated 12 sec ago</span>
-            </div>
-          </div>
-
-          <div class="hero-floating">
-            <div class="hero-floating-pill">
-              <span class="hero-indicator"></span>
-              <span>Booth 87: turnout 76% vs 62% last cycle.</span>
-            </div>
-            <div class="hero-floating-pill">
-              <span class="hero-indicator"></span>
-              <span>Digital: 4.3M impressions today — narrative on track.</span>
             </div>
           </div>
         </div>
@@ -1386,7 +1418,9 @@
         <!-- 1 -->
         <article class="service-card reveal">
           <div>
-            <div class="service-icon">★</div>
+            <div class="service-icon-wrapper">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/f63fc5cb-9d1f-4085-aeaa-5ac182d4282d" alt="Image building" />
+            </div>
             <h3 class="service-title">Image building of party &amp; leader</h3>
             <p class="service-desc">
               Narrative architectures, leader positioning, and reputation programmes that build trust and relatability across diverse voter segments.
@@ -1401,7 +1435,14 @@
         <!-- 2 -->
         <article class="service-card reveal reveal-delay-1">
           <div>
-            <div class="service-icon">Ⓟ</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="18" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="12" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="6" fill="#f97316"/>
+                <path d="M24 6v4M24 38v4M42 24h-4M10 24H6" stroke="#38bdf8" stroke-width="2"/>
+              </svg>
+            </div>
             <h3 class="service-title">Constituency‑centric political strategies</h3>
             <p class="service-desc">
               Micro‑level constituency mapping, data‑driven segmentation and hyperlocal strategy design tailored to caste, community and issue clusters.
@@ -1416,7 +1457,14 @@
         <!-- 3 -->
         <article class="service-card reveal reveal-delay-2">
           <div>
-            <div class="service-icon">⚙</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="12" width="32" height="28" rx="3" stroke="#f97316" stroke-width="2" fill="none"/>
+                <path d="M14 12v-2a2 2 0 012-2h16a2 2 0 012 2v2" stroke="#22c55e" stroke-width="2"/>
+                <circle cx="24" cy="26" r="6" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                <path d="M24 23v3l2 2" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Proactive management of constituencies</h3>
             <p class="service-desc">
               Always‑on grievance cells, MLA/MP office systems and measurable outreach campaigns that keep your constituency warm between elections.
@@ -1431,7 +1479,16 @@
         <!-- 4 -->
         <article class="service-card reveal reveal-delay-3">
           <div>
-            <div class="service-icon">⚖</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="14" r="4" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="30" cy="14" r="4" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="28" r="4" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                <path d="M18 18l4 8M30 18l-4 8M18 36l6-6M30 36l-6-6" stroke="#f97316" stroke-width="2"/>
+                <circle cx="18" cy="36" r="3" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <circle cx="30" cy="36" r="3" stroke="#22c55e" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
             <h3 class="service-title">Social‑movement building</h3>
             <p class="service-desc">
               Issue‑based campaigns, volunteer mobilisation and coalition‑building that converts supporters into a committed movement on the ground.
@@ -1446,7 +1503,13 @@
         <!-- 5 -->
         <article class="service-card reveal">
           <div>
-            <div class="service-icon">✓</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="8" width="28" height="34" rx="2" stroke="#f97316" stroke-width="2" fill="none"/>
+                <path d="M16 16h16M16 22h16M16 28h12M16 34h10" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 38l4-4 4 4" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Manifesto creation &amp; agenda setting</h3>
             <p class="service-desc">
               Research‑backed manifestos, targeted promises and messaging frameworks that speak to real voter aspirations, not generic slogans.
@@ -1461,7 +1524,14 @@
         <!-- 6 -->
         <article class="service-card reveal reveal-delay-1">
           <div>
-            <div class="service-icon">☰</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="12" width="36" height="24" rx="2" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="6" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <path d="M24 20v4l3 3" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 12l-2-4M36 12l2-4" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Social media &amp; media management</h3>
             <p class="service-desc">
               Integrated digital, print and TV strategies, content calendars and newsroom desks that keep your story ahead of the news cycle.
@@ -1476,7 +1546,14 @@
         <!-- 7 -->
         <article class="service-card reveal reveal-delay-2">
           <div>
-            <div class="service-icon">▣</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="10" width="32" height="28" rx="2" stroke="#f97316" stroke-width="2" fill="none"/>
+                <path d="M14 18h4M14 24h8M14 30h6" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="30" cy="24" r="6" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                <path d="M28 24h4M30 22v4" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Field surveys – political &amp; developmental</h3>
             <p class="service-desc">
               Scientific sample design, CATI and on‑ground surveys, exit polls and sentiment analytics feeding directly into your strategy room.
@@ -1491,7 +1568,15 @@
         <!-- 8 -->
         <article class="service-card reveal reveal-delay-3">
           <div>
-            <div class="service-icon">✪</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="10" height="10" stroke="#f97316" stroke-width="2" fill="none"/>
+                <rect x="28" y="10" width="10" height="10" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <rect x="10" y="28" width="10" height="10" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                <rect x="28" y="28" width="10" height="10" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="3" fill="#22c55e"/>
+              </svg>
+            </div>
             <h3 class="service-title">Booth level management</h3>
             <p class="service-desc">
               Booth committees, volunteer training, voter list management and E‑day logistics that ensure every favourable vote is identified and brought out.
@@ -1506,7 +1591,14 @@
         <!-- 9 -->
         <article class="service-card reveal">
           <div>
-            <div class="service-icon">⟳</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="16" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="10" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="24" r="4" fill="#38bdf8"/>
+                <path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Real‑time poll management</h3>
             <p class="service-desc">
               Control rooms, turnout dashboards and escalation teams monitoring every phase of voting in real time – from mock poll to last vote.
@@ -1521,7 +1613,13 @@
         <!-- 10 -->
         <article class="service-card reveal reveal-delay-1">
           <div>
-            <div class="service-icon">♜</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="16" r="6" stroke="#f97316" stroke-width="2" fill="none"/>
+                <path d="M14 36c0-6 4-10 10-10s10 4 10 10" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32 20l6 2-2 6" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Leadership development</h3>
             <p class="service-desc">
               Candidate grooming, media and debate training, digital persona coaching and stakeholder management programmes for emerging leaders.
@@ -1536,7 +1634,13 @@
         <!-- 11 -->
         <article class="service-card reveal reveal-delay-2">
           <div>
-            <div class="service-icon">⚡</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z" stroke="#f97316" stroke-width="2" fill="none"/>
+                <circle cx="24" cy="34" r="6" stroke="#22c55e" stroke-width="2" fill="none"/>
+                <path d="M18 28l12 12M30 28L18 40" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Reputation &amp; crisis management</h3>
             <p class="service-desc">
               24x7 monitoring, rapid response playbooks and fact‑based counter‑narratives that contain crises before they spiral.
@@ -1551,7 +1655,14 @@
         <!-- 12 -->
         <article class="service-card reveal reveal-delay-3">
           <div>
-            <div class="service-icon">✎</div>
+            <div class="service-icon-wrapper">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="12" width="32" height="24" rx="2" stroke="#f97316" stroke-width="2" fill="none"/>
+                <path d="M16 20h16M16 26h12" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="35" cy="16" r="5" fill="#38bdf8"/>
+                <path d="M33 16h4M35 14v4" stroke="#020617" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="service-title">Content &amp; communication strategy</h3>
             <p class="service-desc">
               Speechwriting, campaign films, jingles, print creatives and digital storytelling that maintain one powerful, consistent voice.
@@ -1571,7 +1682,7 @@
     <div class="container">
       <div class="section-header reveal">
         <div class="eyebrow">About us</div>
-        <h2 class="section-title">Campaign specialists built for India’s democracy.</h2>
+        <h2 class="section-title">Campaign specialists built for India's democracy.</h2>
         <p class="section-subtitle">
           We are a multi‑disciplinary team of political strategists, data scientists, journalists and field organisers who solve the real‑world constraints of Indian elections.
         </p>
@@ -1602,11 +1713,14 @@
         </div>
 
         <aside class="about-card reveal reveal-delay-2">
+          <div class="about-image-bg">
+            <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=400&fit=crop&q=80" alt="India map" />
+          </div>
           <div class="about-card-header">
             <div class="about-card-title">Who trusts us</div>
             <span class="hero-panel-badge">Confidential engagement</span>
           </div>
-          <p style="font-size:0.86rem;color:var(--text-muted);">
+          <p style="font-size:0.86rem;color:var(--text-muted);position:relative;z-index:1;">
             Our work spans national parties, regional outfits and independent candidates. Many of our most meaningful assignments remain under strict NDA to protect campaign sensitivities.
           </p>
           <div class="about-logo-row">
@@ -1634,21 +1748,38 @@
 
       <div class="why-grid">
         <article class="why-card reveal">
-          <div class="why-dot"></div>
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#f97316" stroke-width="2"/>
+              <path d="M12 7v5l3 3" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h4>War‑room integrated campaigns</h4>
           <p>
             Strategy, digital, volunteers, booth teams and media desks are run from a single command room with daily dashboards and check‑ins.
           </p>
         </article>
         <article class="why-card reveal reveal-delay-1">
-          <div class="why-dot"></div>
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="#22c55e" stroke-width="2"/>
+              <path d="M7 9h10M7 13h6" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h4>Hard data, not guesswork</h4>
           <p>
             Voter files, field surveys, feedback apps and social listening all plug into one intelligence layer – giving you a real‑time pulse of opinion shifts.
           </p>
         </article>
         <article class="why-card reveal reveal-delay-2">
-          <div class="why-dot"></div>
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="3" stroke="#f97316" stroke-width="2"/>
+              <circle cx="16" cy="8" r="3" stroke="#22c55e" stroke-width="2"/>
+              <circle cx="12" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/>
+              <path d="M8 11l2 3M16 11l-2 3" stroke="#f97316" stroke-width="2"/>
+            </svg>
+          </div>
           <h4>On‑ground machinery that delivers</h4>
           <p>
             Booth committees, cadre training, route planning and micro‑events ensure your message is not only seen online but acted upon offline.
@@ -1719,63 +1850,81 @@
 
       <div class="cases-grid">
         <article class="case-card reveal">
-          <div class="case-header">
-            <div class="case-title">Urban constituency – North India</div>
-            <span class="case-chip">Assembly</span>
+          <div class="case-image">
+            <img src="https://images.unsplash.com/photo-1591258739299-5b65d5cbb235?w=600&h=400&fit=crop&q=85" alt="Urban constituency campaign" />
+            <div class="case-image-overlay"></div>
           </div>
-          <p>Three‑way contest with fragmented urban vote and strong anti‑incumbency narrative.</p>
-          <div class="case-chart">
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:35%;"></div>
+          <div class="case-content">
+            <div class="case-header">
+              <div class="case-title">Urban constituency – North India</div>
+              <span class="case-chip">Assembly</span>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner gain" style="height:72%;"></div>
+            <p>Three‑way contest with fragmented urban vote and strong anti‑incumbency narrative.</p>
+            <div class="case-chart">
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:35%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner gain" style="height:72%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:48%;"></div>
+              </div>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:48%;"></div>
-            </div>
+            <p>Result: leader won with 8.2% vote‑share swing driven by middle‑class and youth segments.</p>
           </div>
-          <p>Result: leader won with 8.2% vote‑share swing driven by middle‑class and youth segments.</p>
         </article>
 
         <article class="case-card reveal reveal-delay-1">
-          <div class="case-header">
-            <div class="case-title">Semi‑rural belt – East India</div>
-            <span class="case-chip">Parliament</span>
+          <div class="case-image">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop&q=85" alt="Rural campaign rally" />
+            <div class="case-image-overlay"></div>
           </div>
-          <p>Low organisational strength, strong caste equations and weak digital presence.</p>
-          <div class="case-chart">
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:30%;"></div>
+          <div class="case-content">
+            <div class="case-header">
+              <div class="case-title">Semi‑rural belt – East India</div>
+              <span class="case-chip">Parliament</span>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner gain" style="height:68%;"></div>
+            <p>Low organisational strength, strong caste equations and weak digital presence.</p>
+            <div class="case-chart">
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:30%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner gain" style="height:68%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:45%;"></div>
+              </div>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:45%;"></div>
-            </div>
+            <p>Result: 1.9 lakh vote margin with 92% booth coverage and unprecedented turnout among women voters.</p>
           </div>
-          <p>Result: 1.9 lakh vote margin with 92% booth coverage and unprecedented turnout among women voters.</p>
         </article>
 
         <article class="case-card reveal reveal-delay-2">
-          <div class="case-header">
-            <div class="case-title">First‑time candidate – Metro city</div>
-            <span class="case-chip">Corporation</span>
+          <div class="case-image">
+            <img src="https://images.unsplash.com/photo-1569070969556-b0c652b1c83e?w=600&h=400&fit=crop&q=85" alt="First-time candidate" />
+            <div class="case-image-overlay"></div>
           </div>
-          <p>Unknown face taking on a three‑time incumbent with strong local network.</p>
-          <div class="case-chart">
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:28%;"></div>
+          <div class="case-content">
+            <div class="case-header">
+              <div class="case-title">First‑time candidate – Metro city</div>
+              <span class="case-chip">Corporation</span>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner gain" style="height:76%;"></div>
+            <p>Unknown face taking on a three‑time incumbent with strong local network.</p>
+            <div class="case-chart">
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:28%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner gain" style="height:76%;"></div>
+              </div>
+              <div class="case-bar">
+                <div class="case-bar-inner" style="height:39%;"></div>
+              </div>
             </div>
-            <div class="case-bar">
-              <div class="case-bar-inner" style="height:39%;"></div>
-            </div>
+            <p>Result: historic win with 2.3x increase in volunteer count and highest turnout ward in city.</p>
           </div>
-          <p>Result: historic win with 2.3x increase in volunteer count and highest turnout ward in city.</p>
         </article>
       </div>
     </div>
@@ -1795,7 +1944,7 @@
       <div class="testimonials-layout">
         <article class="testimonial-main reveal">
           <p class="testimonial-quote">
-            “For the first time, I could see exactly what was happening in every booth – who was responsible, what the numbers looked like and where our narrative needed course‑correction. It felt like running a company, not just a campaign.”
+            "For the first time, I could see exactly what was happening in every booth – who was responsible, what the numbers looked like and where our narrative needed course‑correction. It felt like running a company, not just a campaign."
           </p>
           <div class="testimonial-author">
             <span>Senior MLA, North Indian state (name withheld on request)</span>
@@ -1804,14 +1953,9 @@
         </article>
 
         <aside class="reveal reveal-delay-2">
-          <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.8rem;">
-            Our teams have supported campaigns covered by leading national and regional media outlets.
-          </p>
-          <div class="testimonial-logos">
-            <span class="testimonial-logo-pill">National news channels</span>
-            <span class="testimonial-logo-pill">Regional TV</span>
-            <span class="testimonial-logo-pill">Print dailies</span>
-            <span class="testimonial-logo-pill">Digital platforms</span>
+          <div class="testimonial-image-side">
+            <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=600&h=600&fit=crop&q=85" alt="Campaign team at work" />
+            <div class="testimonial-image-overlay"></div>
           </div>
         </aside>
       </div>
@@ -1831,6 +1975,12 @@
 
       <div class="insights-grid">
         <article class="insight-card reveal">
+          <div class="insight-icon-bg">
+            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="40" stroke="#f97316" stroke-width="3"/>
+              <path d="M30 50h40M50 30v40" stroke="#22c55e" stroke-width="3"/>
+            </svg>
+          </div>
           <div class="insight-tag">Strategy</div>
           <div class="insight-title">How to structure your first war‑room in 30 days.</div>
           <p>Checklist, roles, dashboards and rhythms to turn a campaign office into an operational nerve centre.</p>
@@ -1841,6 +1991,12 @@
         </article>
 
         <article class="insight-card reveal reveal-delay-1">
+          <div class="insight-icon-bg">
+            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="30" width="60" height="40" rx="4" stroke="#22c55e" stroke-width="3"/>
+              <circle cx="50" cy="50" r="15" stroke="#38bdf8" stroke-width="3"/>
+            </svg>
+          </div>
           <div class="insight-tag">Digital</div>
           <div class="insight-title">The 5 content pillars every modern leader needs.</div>
           <p>From governance storytelling to rapid rebuttals – a simple structure for your digital presence.</p>
@@ -1851,6 +2007,14 @@
         </article>
 
         <article class="insight-card reveal reveal-delay-2">
+          <div class="insight-icon-bg">
+            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="25" y="25" width="20" height="20" stroke="#f97316" stroke-width="3"/>
+              <rect x="55" y="25" width="20" height="20" stroke="#22c55e" stroke-width="3"/>
+              <rect x="25" y="55" width="20" height="20" stroke="#38bdf8" stroke-width="3"/>
+              <rect x="55" y="55" width="20" height="20" stroke="#f97316" stroke-width="3"/>
+            </svg>
+          </div>
           <div class="insight-tag">Ground</div>
           <div class="insight-title">Booth‑level systems that survive beyond one election.</div>
           <p>How to convert E‑day mobilisation into permanent organisation strength on the ground.</p>
@@ -1867,6 +2031,13 @@
   <section id="contact" class="section">
     <div class="container">
       <div class="cta-inner reveal">
+        <div class="cta-bg-vector">
+          <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="150" cy="150" r="120" stroke="#f97316" stroke-width="2" opacity="0.3"/>
+            <circle cx="150" cy="150" r="80" stroke="#22c55e" stroke-width="2" opacity="0.3"/>
+            <circle cx="150" cy="150" r="40" stroke="#38bdf8" stroke-width="2" opacity="0.3"/>
+          </svg>
+        </div>
         <div>
           <h2 class="cta-title">Ready to design your next winning campaign?</h2>
           <p class="cta-text">
@@ -1957,7 +2128,7 @@
       navLinks.classList.toggle("mobile-open");
     });
 
-    // Scroll reveal using IntersectionObserver (simple + performant) [web:31][web:40]
+    // Scroll reveal using IntersectionObserver
     const revealElements = document.querySelectorAll(".reveal");
 
     const ioOptions = {
@@ -1975,17 +2146,8 @@
     const observer = new IntersectionObserver(revealOnScroll, ioOptions);
     revealElements.forEach(el => observer.observe(el));
 
-    // Animate hero chart and case bars on load
+    // Animate case bars on load
     window.addEventListener("load", () => {
-      document.querySelectorAll(".hero-bar-fill").forEach(bar => {
-        const h = bar.style.height || "70%";
-        bar.style.transform = "translateY(100%)";
-        setTimeout(() => {
-          bar.style.transition = "transform 800ms cubic-bezier(0.16, 1, 0.3, 1)";
-          bar.style.transform = "translateY(" + (100 - parseInt(h, 10)) + "%)";
-        }, 250);
-      });
-
       document.querySelectorAll(".case-bar-inner").forEach((bar, index) => {
         const h = bar.style.height || "60%";
         bar.style.transform = "translateY(100%)";
@@ -1998,3 +2160,4 @@
   </script>
 </body>
 </html>
+
