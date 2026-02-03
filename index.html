@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>IPRA | Indian Political Reform Agency</title>
 
@@ -14,13 +14,13 @@
 body{
   font-family:'Inter',sans-serif;
   color:#0B1C2D;
-  background:#fff;
+  background:white;
+  scroll-behavior:smooth;
 }
 
 /* ===== HEADER ===== */
 header{
   position:fixed;
-  top:0;
   width:100%;
   background:#0B1C2D;
   padding:18px 8%;
@@ -30,7 +30,7 @@ header{
   z-index:1000;
 }
 
-header img{height:48px;}
+header img{height:48px}
 
 nav a{
   color:white;
@@ -42,7 +42,7 @@ nav a{
 .hero{
   height:100vh;
   background:
-  linear-gradient(rgba(11,28,45,.85), rgba(11,28,45,.85)),
+  linear-gradient(rgba(11,28,45,.85),rgba(11,28,45,.85)),
   url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000");
   background-size:cover;
   background-position:center;
@@ -52,7 +52,6 @@ nav a{
   justify-content:center;
   text-align:center;
   color:white;
-  padding:0 20px;
 }
 
 .hero h1{
@@ -61,9 +60,8 @@ nav a{
 }
 
 .hero p{
-  margin:20px auto;
-  max-width:800px;
-  font-size:20px;
+  margin:25px auto;
+  max-width:750px;
 }
 
 .btn{
@@ -72,7 +70,6 @@ nav a{
   border:none;
   border-radius:6px;
   color:white;
-  font-weight:600;
 }
 
 /* ===== SECTIONS ===== */
@@ -82,11 +79,31 @@ section{
 
 h2{
   font-family:Montserrat;
-  font-size:44px;
-  margin-bottom:40px;
+  font-size:42px;
+  margin-bottom:35px;
 }
 
-/* ===== SPLIT SECTION ===== */
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+/* ===== CARDS ===== */
+.card{
+  background:#f6f8fb;
+  padding:35px;
+  border-radius:12px;
+  text-align:center;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* ===== SPLIT ===== */
 .split{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -96,25 +113,7 @@ h2{
 
 .split img{
   width:100%;
-  border-radius:14px;
-}
-
-/* ===== SERVICES ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
-
-.card{
-  padding:35px;
-  background:#f5f7fa;
   border-radius:12px;
-  text-align:center;
-}
-
-.card h3{
-  margin-top:15px;
 }
 
 /* ===== DARK ===== */
@@ -124,27 +123,35 @@ h2{
   text-align:center;
 }
 
+/* ===== STATS ===== */
 .stats{
   display:flex;
   justify-content:space-around;
   flex-wrap:wrap;
 }
 
-.stats div{
-  margin:20px;
-}
-
 .stats h3{
-  color:#C9A14A;
   font-size:46px;
+  color:#C9A14A;
 }
 
-/* ===== FOOTER ===== */
+/* ===== ANIMATION ===== */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
 footer{
   background:#0B1C2D;
   color:white;
   text-align:center;
-  padding:30px;
+  padding:25px;
 }
 
 @media(max-width:900px){
@@ -160,8 +167,8 @@ footer{
 <header>
   <img src="logo.png">
   <nav>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
+    <a href="#services">Services</a>
+    <a href="#team">Team</a>
     <a href="volunteer.html">Volunteer</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -172,68 +179,73 @@ footer{
 <div class="hero">
   <div>
     <h1>Winning Elections with Intelligence</h1>
-    <p>
-      From booth-level management to digital strategy and data analytics,
-      IPRA delivers end-to-end political campaign execution across India.
-    </p>
-    <button class="btn">Request Consultation</button>
+    <p>End-to-end political campaign strategy, analytics, booth execution and digital outreach across India.</p>
+    <button class="btn">Schedule Consultation</button>
   </div>
 </div>
 
 
-<!-- ABOUT -->
-<section class="split">
-  <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200">
+<!-- IMPORTANCE -->
+<section class="split fade">
   <div>
-    <h2>Who We Are</h2>
+    <h2>Importance of Political Consulting</h2>
     <p>
-      Indian Political Reform Agency is a professional political consulting firm
-      supporting candidates and parties with strategic planning, analytics,
-      volunteer networks and technology-driven campaigns.
+      Modern elections are driven by data, strategy and execution. From booth mapping to digital engagement,
+      campaigns today require scientific planning and professional management.
     </p>
   </div>
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200">
 </section>
 
 
 <!-- SERVICES -->
-<section>
+<section id="services" class="fade">
   <h2 style="text-align:center">Our Core Services</h2>
 
   <div class="grid">
-
-    <div class="card"><h3>📊 Voter Analytics</h3></div>
-    <div class="card"><h3>📣 Digital Campaigns</h3></div>
-    <div class="card"><h3>🗳 Booth Execution</h3></div>
-    <div class="card"><h3>📋 Surveys & Polls</h3></div>
-    <div class="card"><h3>👥 Volunteer Network</h3></div>
-    <div class="card"><h3>⚙ War Rooms</h3></div>
-
+    <div class="card">📊 Research</div>
+    <div class="card">📋 Surveys</div>
+    <div class="card">⚙ Strategies</div>
+    <div class="card">🚀 Execution</div>
+    <div class="card">🏆 Win</div>
   </div>
 </section>
 
 
-<!-- TECH SECTION -->
-<section class="split">
+<!-- VISION MISSION -->
+<section class="split fade">
+  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200">
   <div>
-    <h2>Technology Driven Strategy</h2>
+    <h2>Vision & Mission</h2>
     <p>
-      Real-time dashboards, WhatsApp automation, GIS booth mapping and campaign intelligence
-      allow data-backed decision making for every constituency.
+      To build a stronger democracy through data-driven political systems and people-centric campaigns that deliver measurable outcomes.
     </p>
   </div>
-  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200">
+</section>
+
+
+<!-- TEAM -->
+<section id="team" class="fade">
+  <h2 style="text-align:center">Our Team</h2>
+
+  <div class="grid">
+    <div class="card">Strategy Experts</div>
+    <div class="card">Data Analysts</div>
+    <div class="card">Field Managers</div>
+    <div class="card">Digital Specialists</div>
+  </div>
 </section>
 
 
 <!-- STATS -->
-<section class="dark">
+<section class="dark fade">
   <h2>Our Impact</h2>
 
   <div class="stats">
     <div><h3>50+</h3><p>Campaigns</p></div>
     <div><h3>12</h3><p>States</p></div>
-    <div><h3>10M+</h3><p>Voters Reached</p></div>
-    <div><h3>95%</h3><p>Success Rate</p></div>
+    <div><h3>10M+</h3><p>Voters</p></div>
+    <div><h3>95%</h3><p>Success</p></div>
   </div>
 </section>
 
@@ -241,6 +253,19 @@ footer{
 <footer>
 © 2026 Indian Political Reform Agency (IPRA)
 </footer>
+
+
+<script>
+const faders = document.querySelectorAll('.fade');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+faders.forEach(f => observer.observe(f));
+</script>
 
 </body>
 </html>
